@@ -34,9 +34,9 @@ jobs:
 
       - name: Test mesos
         run: docker run --privileged --cap-add=ALL
-          -e GTEST_FILTER='-EnvironmentSecretIsolatorTest.*:ExamplesTest.DiskFullFramework:ContainerizerTest.ROOT_CGROUPS_BalloonFramework:ResourceOffersTest.ResourceOfferWithMultipleSlaves'
+          -e GTEST_FILTER='LinuxCapabilitiesIsolatorFlagsTest.*'
           mesosbuild:"$GITHUB_SHA"
-          make check -j $(nproc)
+          make check -j $(nproc)  
 
       - name: Check branch name
         id: check-branch
