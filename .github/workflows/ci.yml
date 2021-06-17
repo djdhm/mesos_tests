@@ -5,7 +5,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu:xenial-20201014
     steps:
       - uses: actions/checkout@v2
 
@@ -34,7 +34,7 @@ jobs:
 
       - name: Test mesos
         run: docker run --privileged --cap-add=ALL
-          -e GTEST_FILTER='-EnvironmentSecretIsolatorTest.*:*Capabilities*:AmbientCapabilities.*:*Isolator*:ExamplesTest.DiskFullFramework:ContainerizerTest.ROOT_CGROUPS_BalloonFramework:ResourceOffersTest.ResourceOfferWithMultipleSlaves'
+          -e GTEST_FILTER='-EnvironmentSecretIsolatorTest.*:AmbientCapabilities.*:ExamplesTest.DiskFullFramework:ContainerizerTest.ROOT_CGROUPS_BalloonFramework:ResourceOffersTest.ResourceOfferWithMultipleSlaves'
           mesosbuild:"$GITHUB_SHA"
           make check -j $(nproc)  
 
